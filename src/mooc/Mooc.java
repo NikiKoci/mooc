@@ -55,11 +55,22 @@ import personnel.Education;
 import people.Student;
 import people.Teacher;
 import personnel.Education;
-import personnel.Person;
+import personnel.Employees;
+import reference.comparator.FilmComparator;
+import reference.comparator.PersonComparator;
+import reference.domain.Film;
+import reference.domain.Person;
+import reference.domain.Rating;
+import reference.domain.RatingRegister;
+import reference.domain.Reference;
 import ten.ProductContainer;
 import ten.ProductContainerRecorder;
 import tools.DuplicateRemover;
 import tools.PersonalDuplicateRemover;
+import twelve.Build;
+import twelve.ContainsWord;
+import twelve.Criterion;
+import twelve.GutenbergReader;
 import twelve.Regex;
 
 /**
@@ -69,7 +80,14 @@ import twelve.Regex;
 public class Mooc {
 
     public static void main(String[] args) throws FileNotFoundException, IOException, Exception {
-     Person arto = new Person("Arto", Education.D);
-    System.out.println(arto);
-}
+String address = "http://www.gutenberg.org/files/2554/2554-0.txt";
+    GutenbergReader book = new GutenbergReader(address);
+
+    Criterion criterion = new ContainsWord("beer");
+
+    for (String line : book.linesWhichComplyWith(criterion)) {
+        System.out.println(line);
+    }
+    
+    }
 }
